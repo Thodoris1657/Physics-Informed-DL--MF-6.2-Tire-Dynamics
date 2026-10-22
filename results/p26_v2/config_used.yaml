@@ -1,0 +1,236 @@
+vehicle:
+  name: P26
+  NSM: 43.0
+  SM: 210.0
+  hcog_NSM: 0.199
+  hcog_SM: 0.275
+  Iz: 100.0
+  WD_tot: 0.47
+  WD_NSM: 0.34
+  WB: 1.59
+  Tf: 1.22
+  Tr: 1.23
+  Rw: 0.2054
+  hRC_f: 0.03286
+  hRC_r: 0.0275
+  roll_rate_deg_per_g: 0.5
+  MB: 0.52
+  AD_long: 0.48
+  AD_lat: 0.5
+  clA_nom: 4.7
+  CdA: 1.9
+  roll_loss: 0.2743
+  rho: 1.225
+  g: 9.81
+  steer_ratio: 3.28
+  drive: rear
+  vy_sensor_x: 0.0
+telemetry:
+  files:
+  - data/Testing_Data/*.csv
+  columns:
+    time: time
+    steer: steering
+    ax: a_x
+    ay: a_y
+    vx: u_x
+    vy: u_y
+    yaw_rate: yaw_rate
+  steer_unit: deg
+  steer_is_roadwheel: false
+  yaw_rate_unit: rad/s
+  accel_unit: m/s2
+  speed_unit: m/s
+  smooth_raw: true
+  vx_min: 6.7
+  vx_max: 15.7
+  steer_sign_policy: exclude
+  exclude_runs: []
+  window_s: 1.0
+  min_fill: 0.9
+  rdot_max: 0.4
+  r_std_max: 0.25
+  ax_max: 2.0
+  ay_min_g: 0.5
+ttc:
+  files:
+  - data/TTC data/*.csv
+  convention: SAE
+  fz_min: 100.0
+  max_fx_over_fz: 0.25
+  combined_slip_warn_fraction: 0.3
+  decimate: 1
+  camber_identifiable_deg: 0.5
+tyre:
+  Fz0: null
+  params:
+    pCy1:
+      init: 1.5
+      lo: 1.05
+      hi: 2.0
+      prior_mu: 1.45
+      prior_sd: 0.2
+      fixed: false
+    pDy1:
+      init: 2.3
+      lo: 0.5
+      hi: 4.0
+      prior_mu: 2.3
+      prior_sd: 1.0
+      fixed: false
+    pDy2:
+      init: -0.15
+      lo: -1.0
+      hi: 0.5
+      prior_mu: -0.1
+      prior_sd: 0.2
+      fixed: false
+    pDy3:
+      init: 0.0
+      lo: -20.0
+      hi: 20.0
+      prior_mu: 0.0
+      prior_sd: 5.0
+      fixed: false
+    pEy1:
+      init: 0.0
+      lo: -5.0
+      hi: 1.0
+      prior_mu: 0.0
+      prior_sd: 1.0
+      fixed: false
+    pEy2:
+      init: 0.0
+      lo: -2.0
+      hi: 2.0
+      prior_mu: 0.0
+      prior_sd: 0.5
+      fixed: false
+    pEy3:
+      init: 0.0
+      lo: -1.0
+      hi: 1.0
+      prior_mu: 0.0
+      prior_sd: 0.3
+      fixed: false
+    pEy4:
+      init: 0.0
+      lo: -10.0
+      hi: 10.0
+      prior_mu: 0.0
+      prior_sd: 2.0
+      fixed: false
+    pKy1:
+      init: 60.0
+      lo: 10.0
+      hi: 200.0
+      prior_mu: 60.0
+      prior_sd: 40.0
+      fixed: false
+    pKy2:
+      init: 2.0
+      lo: 0.3
+      hi: 8.0
+      prior_mu: 2.0
+      prior_sd: 1.5
+      fixed: false
+    pHy1:
+      init: 0.0
+      lo: -0.05
+      hi: 0.05
+      prior_mu: 0.0
+      prior_sd: 0.01
+      fixed: false
+    pHy2:
+      init: 0.0
+      lo: -0.05
+      hi: 0.05
+      prior_mu: 0.0
+      prior_sd: 0.01
+      fixed: false
+    pHy3:
+      init: 0.0
+      lo: -1.0
+      hi: 1.0
+      prior_mu: 0.0
+      prior_sd: 0.2
+      fixed: false
+    pVy1:
+      init: 0.0
+      lo: -0.3
+      hi: 0.3
+      prior_mu: 0.0
+      prior_sd: 0.05
+      fixed: false
+    pVy2:
+      init: 0.0
+      lo: -0.3
+      hi: 0.3
+      prior_mu: 0.0
+      prior_sd: 0.05
+      fixed: false
+    pVy3:
+      init: 0.0
+      lo: -2.0
+      hi: 2.0
+      prior_mu: 0.0
+      prior_sd: 0.5
+      fixed: false
+    pVy4:
+      init: 0.0
+      lo: -2.0
+      hi: 2.0
+      prior_mu: 0.0
+      prior_sd: 0.5
+      fixed: false
+  freeze: []
+  auto_freeze_camber: true
+  sign_eps_deg: 0.25
+  ey_cap_sharpness: 25.0
+ttc_fit:
+  n_starts: 24
+  adam_iters: 300
+  lbfgs_iters: 400
+  likelihood: student_t
+  student_nu: 4.0
+  seed: 42
+track_fit:
+  enabled: true
+  formulation: eiv
+  grip_scaling: friction
+  per_axle: true
+  learn_stiffness_scale: false
+  lambda_mu_median: 0.6
+  lambda_mu_sdlog: 0.5
+  lambda_K_median: 1.0
+  lambda_K_sdlog: 0.15
+  shape_coupling: fixed
+  sigma_beta_global_deg: 1.5
+  sigma_beta_run_deg: 1.5
+  sigma_beta_seg_deg: 2.0
+  sigma_steer_global_deg: 0.0
+  sigma_steer_run_deg: 0.0
+  sigma_lat_g: 0.03
+  sigma_yaw_Nm: 40.0
+  learn_noise: true
+  likelihood: student_t
+  student_nu: 4.0
+  combined_slip: ellipse
+  lbfgs_iters: 600
+  adam_iters: 400
+  seed: 7
+validation:
+  leave_one_run_out: true
+  handling_radius_m: null
+  handling_vmin: 4.0
+  handling_vmax: 20.0
+  handling_points: 60
+output:
+  out_dir: results/p26_v2
+  timeseries: true
+  tir: true
+  report: true
+  plots: true
+  dpi: 150
+tyre_name: Hoosier 43075 16x7.5-10 R25B (10 psi)
+notes: Calspan TTC Round 5 cornering sweeps + P26 skidpad 2026

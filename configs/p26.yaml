@@ -1,0 +1,87 @@
+# ============================================================================
+#  MF6.2 PINN - run configuration for the Prom Racing P26 + Hoosier 43075
+#
+#  Every key is optional: anything omitted takes the default from
+#  src/mf62pinn/config.py.  Paths are relative to the directory you run from
+#  (the repository root by default).  Override any entry from the CLI:
+#     mf62pinn fit -c configs/p26.yaml --set track_fit.sigma_beta_run_deg=1.0
+# ============================================================================
+
+tyre_name: Hoosier 43075 16x7.5-10 R25B (10 psi)
+notes: Calspan TTC Round 5 cornering sweeps + P26 skidpad 2026
+
+vehicle:                      # MATLAB paramsp26 struct
+  name: P26
+  NSM: 43.0                   # unsprung mass                [kg]
+  SM: 210.0                   # sprung mass incl. driver     [kg]
+  hcog_NSM: 0.199             # [m]
+  hcog_SM: 0.275              # [m]
+  Iz: 100.0                   # yaw inertia                  [kg m^2]
+  WD_tot: 0.47                # front weight distribution
+  WD_NSM: 0.34
+  WB: 1.590                   # wheelbase                    [m]
+  Tf: 1.220                   # front track                  [m]
+  Tr: 1.230                   # rear track                   [m]
+  Rw: 0.2054                  # unloaded tyre radius         [m]
+  hRC_f: 0.03286              # roll-centre heights          [m]
+  hRC_r: 0.02750
+  roll_rate_deg_per_g: 0.5
+  MB: 0.52                    # roll-stiffness balance (front share)
+  AD_long: 0.48               # aero balance (front share)
+  clA_nom: 4.70               # [m^2]
+  CdA: 1.90                   # [m^2]
+  roll_loss: 0.2743           # ClA loss per deg of roll     [m^2/deg]
+  steer_ratio: 3.28           # steering wheel -> road wheel
+  drive: rear
+  vy_sensor_x: 0.0            # Vy sensor position ahead of the CoG [m]
+
+ttc:
+  files: ["data/TTC data/*.csv"]
+  convention: SAE             # raw Calspan files
+  fz_min: 100.0
+  max_fx_over_fz: 0.25        # free-rolling guard against combined-slip files
+
+telemetry:
+  files: ["data/Testing_Data/*.csv"]
+  columns: {time: time, steer: steering, ax: a_x, ay: a_y, vx: u_x, vy: u_y, yaw_rate: yaw_rate}
+  steer_unit: deg
+  steer_is_roadwheel: false   # steering-wheel angle -> divided by steer_ratio
+  yaw_rate_unit: rad/s
+  accel_unit: m/s2
+  speed_unit: m/s
+  vx_min: 6.7
+  vx_max: 15.7
+  steer_sign_policy: exclude  # the four 6 m runs have a mis-signed steering channel
+  exclude_runs: []
+  window_s: 1.0               # quasi-steady segment length
+  rdot_max: 0.4
+  r_std_max: 0.25
+  ax_max: 2.0
+  ay_min_g: 0.5
+
+ttc_fit:
+  n_starts: 24
+  likelihood: student_t
+  seed: 42
+
+track_fit:
+  enabled: true
+  formulation: eiv            # eiv | global_offset (v1 behaviour)
+  grip_scaling: friction      # friction (MF LMUY) | force (v1 behaviour)
+  per_axle: true
+  learn_stiffness_scale: false
+  shape_coupling: fixed       # fixed | laplace
+  sigma_beta_global_deg: 1.5  # sideslip-sensor priors
+  sigma_beta_run_deg: 1.5
+  sigma_beta_seg_deg: 2.0
+  sigma_steer_global_deg: 0.0 # >0 enables latent steering zero offsets
+  sigma_steer_run_deg: 0.0
+  combined_slip: ellipse
+
+validation:
+  leave_one_run_out: true
+  handling_radius_m: null     # null -> median radius of the telemetry
+
+output:
+  out_dir: runs/p26
+  dpi: 150

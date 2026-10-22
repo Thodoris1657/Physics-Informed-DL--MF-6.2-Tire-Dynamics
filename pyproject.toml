@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mf62pinn"
+version = "2.0.0"
+description = "Physics-informed identification of Magic Formula 6.2 lateral tyre models from TTC rig data and vehicle telemetry"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Theodore Fragos" },
+  { name = "Andriana Manika" },
+]
+keywords = ["tyre", "tire", "magic formula", "pacejka", "MF6.2", "vehicle dynamics", "PINN",
+            "formula student", "FSAE", "system identification", "pytorch"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Topic :: Scientific/Engineering :: Physics",
+  "Intended Audience :: Science/Research",
+]
+dependencies = [
+  "numpy>=1.23",
+  "pandas>=1.5",
+  "scipy>=1.9",
+  "torch>=2.0",
+  "matplotlib>=3.6",
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+app = ["streamlit>=1.30"]
+dev = ["pytest>=7", "ruff>=0.4"]
+all = ["streamlit>=1.30", "pytest>=7", "ruff>=0.4", "openpyxl"]
+
+[project.scripts]
+mf62pinn = "mf62pinn.cli:main"
+
+[project.urls]
+Documentation = "https://github.com/prom-racing/mf62-pinn/tree/main/docs"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = ["slow: end-to-end runs on the bundled data (deselect with -m 'not slow')"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E731", "E741", "E501"]

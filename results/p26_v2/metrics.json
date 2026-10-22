@@ -1,0 +1,161 @@
+{
+  "version": "2.0.0",
+  "headline": {
+    "ttc_r2": 0.9993035466844297,
+    "ttc_rmse_N": 41.60080312408967,
+    "rig_mu_peak_Fz0": 2.565766986212259,
+    "rig_alpha_peak_Fz0_deg": 9.836337472648264,
+    "rig_Kya_Fz0_N_per_deg": 508.5719896879683,
+    "LMUY_front": 0.45235876306445894,
+    "LMUY_rear": 0.4410046506807905,
+    "LKY": 1.0,
+    "track_mu_peak_Fz0_front": 1.1606471801946021,
+    "track_mu_peak_Fz0_rear": 1.131515173482842,
+    "saturated_fraction": 0.9178571428571429,
+    "ay_limit_g": 1.2888113120980025,
+    "Kus_linear_deg_per_g": -0.10901369014417156
+  },
+  "ttc": {
+    "rmse_N": 41.60080312408967,
+    "r2": 0.9993035466844297,
+    "mae_N": 30.54552718532758,
+    "sigma_mu": 0.05187729496632277,
+    "n_rows": 6582,
+    "ar1_inflation": 37.55868790561535,
+    "n_eff": 175.24573852368079,
+    "hessian_condition": 5331.441260153653,
+    "n_starts": 24,
+    "n_near_optimal": 23
+  },
+  "timings": {
+    "ttc_fit_s": 6.939464092254639,
+    "track_fit_s": 35.431389808654785,
+    "total_s": 95.4813506603241
+  },
+  "findings": [
+    {
+      "level": "good",
+      "area": "Rig fit",
+      "msg": "MF6.2 reproduces the TTC sweeps with R^2 = 0.9993, RMSE = 41.6 N (6582 rows, effective sample size 175)"
+    },
+    {
+      "level": "good",
+      "area": "Track grip",
+      "msg": "friction scale LMUY = 0.452 +/- 0.003 (front), 0.441 +/- 0.003 (rear)"
+    },
+    {
+      "level": "good",
+      "area": "Validation",
+      "msg": "predicted steady-state grip limit 1.29 g at R = 12.0 m vs 1.28 g mean / 1.42 g p90 driven in the best run"
+    },
+    {
+      "level": "warn",
+      "area": "Telemetry",
+      "msg": "processed_6m_1st.csv: steering sign contradicts the turn direction (road-wheel +2.1 deg vs Ackermann -12.6 deg) -> run quarantined"
+    },
+    {
+      "level": "warn",
+      "area": "Telemetry",
+      "msg": "processed_6m_2nd.csv: steering sign contradicts the turn direction (road-wheel +4.0 deg vs Ackermann -12.4 deg) -> run quarantined"
+    },
+    {
+      "level": "warn",
+      "area": "Telemetry",
+      "msg": "processed_6m_3rd.csv: steering sign contradicts the turn direction (road-wheel +2.2 deg vs Ackermann -12.2 deg) -> run quarantined"
+    },
+    {
+      "level": "warn",
+      "area": "Telemetry",
+      "msg": "processed_6m_4th.csv: steering sign contradicts the turn direction (road-wheel +6.0 deg vs Ackermann -12.6 deg) -> run quarantined"
+    },
+    {
+      "level": "warn",
+      "area": "Telemetry",
+      "msg": "kinematic identity ay = dVy/dt + Vx r violated by 2.7 m/s^2 RMS in 9 run(s): the lateral-velocity channel is noisy/biased"
+    },
+    {
+      "level": "warn",
+      "area": "Operating point",
+      "msg": "92% of wheel-segments sit beyond the tyre peak. The car was driven at its grip limit, so the telemetry fixes the friction level but not the on-track slip angles / cornering stiffness (they are prior-dominated)."
+    },
+    {
+      "level": "warn",
+      "area": "Sensors",
+      "msg": "global sideslip correction of +3.1 deg: treat as a nuisance parameter, not a calibrated sensor bias"
+    },
+    {
+      "level": "info",
+      "area": "TTC data",
+      "msg": "run5_25mph_10psi_0IA_50lbs.csv: 14 rows rejected by the free-rolling guard"
+    },
+    {
+      "level": "info",
+      "area": "Rig fit",
+      "msg": "peak slip above 1126 N lies beyond the tested \u00b112 deg (post-peak shape extrapolated there)"
+    },
+    {
+      "level": "info",
+      "area": "Rig fit",
+      "msg": "structurally non-identifiable (no camber in the data), frozen at 0: pDy3, pEy4, pHy3, pVy3, pVy4"
+    },
+    {
+      "level": "info",
+      "area": "Track grip",
+      "msg": "leave-one-run-out LMUY range: front 0.445-0.471, rear 0.434-0.460"
+    }
+  ],
+  "environment": {
+    "python": "3.13.16",
+    "torch": "2.14.1+cu130",
+    "platform": "Linux-6.18.44-fc-v140-x86_64-with-glibc2.39"
+  },
+  "track": {
+    "segments": 140,
+    "runs": 5,
+    "ay_r2_fit": 0.32286293754308637,
+    "ay_rmse_fit": 1.060339046239788,
+    "ay_r2_kin": -0.854090967902861,
+    "ay_rmse_kin": 1.754575177019426,
+    "ay_bias_kin": 0.12319889785469097,
+    "ay_runmean_rmse_kin": 0.8757668761102255,
+    "rdot_rmse_kin": 3.5386131459312713,
+    "yaw_rms_Nm": 38.327343322282566,
+    "lat_rms_N": 268.2657786986664,
+    "sigma_lat_g": 0.047377886882104925,
+    "sigma_yaw_Nm": 63.170515842806566,
+    "beta_global_offset_deg": 3.0724097257012346,
+    "beta_latent_minus_meas_rms_deg": 5.122145141862291,
+    "saturated_fraction": 0.9178571428571429,
+    "neg_log_post": 413.83414761060436,
+    "hessian_condition": 242693.72838058017,
+    "hessian_nonpositive": 0,
+    "alpha_FL_mean_deg": -8.033962968567346,
+    "saturated_FL": 0.8785714285714286,
+    "alpha_FR_mean_deg": -7.812587582741464,
+    "saturated_FR": 0.8142857142857143,
+    "alpha_RL_mean_deg": -10.380445878975804,
+    "saturated_RL": 1.0,
+    "alpha_RR_mean_deg": -9.378193477696374,
+    "saturated_RR": 0.9785714285714285,
+    "ay_r2_loro": -1.2562296216973605,
+    "ay_rmse_loro": 1.9355219911205501,
+    "ay_runmean_rmse_loro": 1.1738933500462505
+  },
+  "lambdas": {
+    "LMUY_front": 0.45235876306445894,
+    "LMUY_rear": 0.4410046506807905,
+    "LKY": 1.0
+  },
+  "lambdas_sd": {
+    "LMUY_front": 0.0029616387514068048,
+    "LMUY_rear": 0.0028543071285916273,
+    "LKY": 0.0
+  },
+  "handling": {
+    "radius_m": 11.91521752655938,
+    "v_limit_ms": 12.273831618034235,
+    "ay_limit_g": 1.2888113120980025,
+    "Kus_linear_deg_per_g": -0.10901369014417156,
+    "limited_by_sweep": false
+  }
+}

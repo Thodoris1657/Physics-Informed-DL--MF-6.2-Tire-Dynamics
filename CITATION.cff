@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "MF6.2 PINN: physics-informed identification of Magic Formula 6.2 lateral tyre models from TTC and track telemetry"
+version: 2.0.0
+date-released: 2026-10-22
+authors:
+  - family-names: Fragos
+    given-names: Theodore
+    affiliation: "Prom Racing, National Technical University of Athens"
+  - family-names: Manika
+    given-names: Andriana
+    affiliation: "Prom Racing, National Technical University of Athens"
+license: MIT
+keywords: [tyre modelling, Magic Formula, MF6.2, physics-informed learning, errors-in-variables, Formula Student]

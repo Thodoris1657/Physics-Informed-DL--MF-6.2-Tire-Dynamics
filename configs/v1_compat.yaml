@@ -1,0 +1,10 @@
+# Re-creates the v1 *formulation* inside the v2 engine, for A/B comparisons:
+# one global lateral-velocity offset (no latent sideslip per run/segment),
+# a whole-force grip scale per axle, and every telemetry run kept as logged.
+ttc: {files: ["data/TTC data/*.csv"]}
+telemetry: {files: ["data/Testing_Data/*.csv"], steer_sign_policy: keep}
+track_fit:
+  formulation: global_offset
+  grip_scaling: force
+  sigma_beta_global_deg: 10.0
+output: {out_dir: runs/v1_compat}

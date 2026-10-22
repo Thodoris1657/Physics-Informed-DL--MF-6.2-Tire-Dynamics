@@ -1,0 +1,67 @@
+==================================================================
+ FSAE P26 - PINN tyre discovery  summary
+ 2026-10-22 20:37:20
+==================================================================
+
+Vehicle (P26):
+  m_tot  = 253.0 kg   (NSM=43, SM=210.0)
+  Iz     = 100.0 kg.m^2
+  WB     = 1.590 m   lf=0.843  lr=0.747
+  Tracks = 1.220/1.230 m   hCG=0.275
+
+Data:
+  telemetry rows : 23238
+  TTC rows       : 6596
+
+Final loss components:
+  total    = 0.610203
+  ttc      = 0.021911
+  lat      = 0.028883
+  yaw      = 0.016014
+  reg      = 217.317736
+
+TTC fit quality:
+  RMSE = 135.0 N
+  R^2  = 0.9927
+
+Lateral-balance prediction (ay_pred vs ay_meas):
+  RMSE = 3.419 m/s^2
+  R^2  = -0.3200
+
+Peak |Fy| per wheel:
+  FL: 910 N
+  FR: 1279 N
+  RL: 934 N
+  RR: 1376 N
+
+Peak Fz per wheel:
+  FL: 747 N   min=77 N
+  FR: 1218 N   min=427 N
+  RL: 894 N   min=218 N
+  RR: 1351 N   min=614 N
+
+MF6.2 coefficients (pure lateral):
+  pCy1         = +1.600000
+  pDy1         = +2.455988
+  pDy2         = -0.334482
+  pDy3         = +0.000000
+  pEy1         = -0.018931
+  pEy2         = +0.248093
+  pEy3         = -0.000002
+  pEy4         = +0.000000
+  pKy1         = +65.699371
+  pKy2         = +2.604206
+  pHy1         = -0.004208
+  pHy2         = -0.003891
+  pHy3         = +0.000000
+  pVy1         = +0.071171
+  pVy2         = +0.079518
+  pVy3         = +0.000000
+  pVy4         = +0.000000
+  Fz0_nominal  = +665.512563
+  mu_scale_front = +0.5346
+  mu_scale_rear  = +0.5548
+  vy_offset      = +2.5041 m/s
+  Iz_param       = 100.00 kg*m^2  (fixed)
+
+==================================================================

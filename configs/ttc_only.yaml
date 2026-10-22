@@ -1,0 +1,4 @@
+# Rig identification only (no vehicle telemetry needed).
+ttc: {files: ["data/TTC data/*.csv"]}
+track_fit: {enabled: false}
+output: {out_dir: runs/ttc_only}
